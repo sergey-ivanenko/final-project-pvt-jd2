@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <spring.version></spring.version>
+        <spring.version>5.1.5.RELEASE</spring.version>
         <hibernate.version>5.4.1.Final</hibernate.version>
     </properties>
 
@@ -23,6 +23,25 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${hibernate.version}</version>
+        </dependency>
+        
+        <!-- spring-context -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!-- spring-orm -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <!-- spring-jdbc -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${spring.version}</version>
         </dependency>
         
         <!-- mysql-connector-java -->

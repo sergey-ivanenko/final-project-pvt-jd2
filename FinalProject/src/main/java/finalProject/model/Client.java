@@ -10,7 +10,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "clients", catalog = "labour_system")
+@Table(name = "client", catalog = "labour_system")
 @PrimaryKeyJoinColumn(name = "user_id")
 public class Client extends User {
     

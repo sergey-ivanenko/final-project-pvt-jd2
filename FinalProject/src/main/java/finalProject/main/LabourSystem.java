@@ -4,13 +4,14 @@ import finalProject.dao.AdminDao;
 import finalProject.dao.UserDao;
 import finalProject.dao.ClientDao;
 import finalProject.dao.RequestDao;
-import finalProject.dao.RequestDaoImpl;
 import finalProject.model.Admin;
 import finalProject.model.Client;
 import finalProject.model.Request;
 import finalProject.model.Type;
 import finalProject.model.User;
 import java.util.List;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class LabourSystem {
 
@@ -22,10 +23,13 @@ public class LabourSystem {
     public static void main(String[] args) {
         System.out.println("Hello, final progect!");
         
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+        
         Client client1 = new Client("client1", "login_client1", "password_client1");
         Client client2 = new Client("client2", "login_client2", "password_client2");
         Client client3 = new Client("client3", "login_client3", "password_client3");
-        Admin admin = new Admin("admin_name", "Login", "Password");
+        
+        Admin admin = context.getBean(Admin.class);
 
         Request request1 = new Request(client1, "Junior Java developer", 450, 40, Type.WORKER);
         Request request2 = new Request(client2, "Junior Java developer", 500, 40, Type.EMPLOYER);
@@ -39,11 +43,11 @@ public class LabourSystem {
         client2.getRequests().add(request4);
         client3.getRequests().add(request5);
         
-        UserDao userDao = new ClientDao();
-        UserDao adminDao = new AdminDao();
-        userDao.add(client1);
-        userDao.add(client2);
-        userDao.add(client3);
+        UserDao clientDao = context.getBean(ClientDao.class);
+        UserDao adminDao = context.getBean(AdminDao.class);
+        clientDao.add(client1);
+        clientDao.add(client2);
+        clientDao.add(client3);
 
         System.out.println(client1);
         System.out.println(client2);
@@ -51,19 +55,19 @@ public class LabourSystem {
 
         adminDao.add(admin);
 
-        User fUser = userDao.findUser("f", "fg");
+        User fUser = clientDao.findUser("f", "fg");
         System.out.println(fUser);
 
         User fAdmin = adminDao.findUser("Login", "Password");
         System.out.println(fAdmin);
 
         //adminDao.delete(fAdmin);
-        users = userDao.getAll();
+        users = clientDao.getAll();
         for (User user : users) {
             System.out.println(user);
         }
 
-        RequestDao requestDao = new RequestDaoImpl();
+        RequestDao requestDao = context.getBean(RequestDao.class);
         Request request = requestDao.findRequest(1);
         System.out.println(request);
         request.setJob("Middle Android developer");

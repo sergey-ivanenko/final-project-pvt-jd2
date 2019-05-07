@@ -11,7 +11,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users", catalog = "labour_system")
+@Table(name = "user", catalog = "labour_system")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User implements Serializable {
 
