@@ -1,5 +1,6 @@
 package finalProject.service;
 
+import finalProject.model.Client;
 import finalProject.model.Request;
 import java.util.List;
 
@@ -9,4 +10,5 @@ public interface RequestService {
 	void update(Request request);
 	void delete(Request request);
 	List<Request> getAll();
+	List<Request> findByRequester(Client client);
 }

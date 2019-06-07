@@ -85,6 +85,10 @@ public class LabourSystem {
 		//requestDao.update(request);
 		requestService.update(request);
 		System.out.println(request);
+		List<Request> requests = requestService.findByRequester(client2);
+		for(Request req : requests) {
+			System.out.println(req);
+		}
 	}
 
 	private void addUser(String name, String login, String password, String repeation, Type type) {

@@ -1,10 +1,10 @@
 package finalProject.service;
 
 import finalProject.dao.RequestRepository;
+import finalProject.model.Client;
 import finalProject.model.Request;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,5 +45,11 @@ public class RequestServiceImpl implements RequestService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<Request> getAll() {
 		return repository.findAll();
-	}	
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<Request> findByRequester(Client client) {
+		return repository.findByRequester(client);
+	}
 }
