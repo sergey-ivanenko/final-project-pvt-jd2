@@ -3,10 +3,11 @@ package finalProject.dao;
 import finalProject.model.User;
 import java.util.List;
 
-public interface UserDao<T extends User> {
-	void add(T user);
-	T findUser(String login, String password);
-	void update(T user);
-	void delete(T user);
-	List<T> getAll();
+public interface UserDao {
+	void add(User user);
+	//User findUser(String login, String password);
+	User findByLogin(String login);
+	void update(User user);
+	void delete(User user);
+	List<User> getAll();
 }

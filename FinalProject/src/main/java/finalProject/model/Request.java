@@ -36,7 +36,7 @@ public class Request implements Serializable {
     @Enumerated(EnumType.STRING)
     private Type type;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne/*(cascade = CascadeType.ALL, fetch = FetchType.LAZY)*/
     @JoinColumn(name = "user_id", nullable = false)
     private Client requester;
 
