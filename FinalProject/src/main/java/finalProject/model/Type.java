@@ -2,7 +2,8 @@ package finalProject.model;
 
 public enum Type {
     WORKER,
-    EMPLOYER;
+    EMPLOYER,
+    NONE;
 
     Type() {
     }

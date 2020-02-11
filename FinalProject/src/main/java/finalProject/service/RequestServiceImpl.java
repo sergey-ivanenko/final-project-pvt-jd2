@@ -1,5 +1,6 @@
 package finalProject.service;
 
+import finalProject.dao.RequestDao;
 import finalProject.dao.RequestRepository;
 import finalProject.model.Client;
 import finalProject.model.Request;
@@ -14,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class RequestServiceImpl implements RequestService {
 	
 	private final RequestRepository repository;
+	@Autowired
+	private RequestDao requestDao;
 
 	@Autowired
 	public RequestServiceImpl(RequestRepository repository) {
@@ -39,6 +42,11 @@ public class RequestServiceImpl implements RequestService {
 	@Override
 	public void delete(Request request) {
 		repository.delete(request);
+	}
+
+	@Override
+	public void deleteById(int id) {
+		repository.deleteById(id);
 	}
 
 	@Override

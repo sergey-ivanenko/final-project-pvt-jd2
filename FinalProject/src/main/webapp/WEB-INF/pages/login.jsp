@@ -13,8 +13,8 @@
 
         <title>Log in with your account</title>
 
-        <link href="${contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
-        <link href="${contextPath}/static/css/style.css" rel="stylesheet">
+        <link href="${contextPath}/static/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="${contextPath}/static/css/style.css" rel="stylesheet" />
 
         <script src="${contextPath}/static/js/html5shiv.min.js"></script>
         <script src="${contextPath}/static/js/respond.min.js"></script>
@@ -37,7 +37,8 @@
             </form>
         </div>
 
-        <script src="${contextPath}/static/js/jquery-3.4.1.min.js"></script>
-        <script src="${contextPath}/static/js/bootstrap.min.js"></script>
+        <script src="${contextPath}/static/js/jquery-3.4.1.min.js" type="text/javascript"></script>
+        <%--<script src="${contextPath}/static/js/bootstrap.min.js"></script>--%>
+        <script src="${contextPath}/static/js/bootstrap.min.js" type="text/javascript"></script>
     </body>
 </html>

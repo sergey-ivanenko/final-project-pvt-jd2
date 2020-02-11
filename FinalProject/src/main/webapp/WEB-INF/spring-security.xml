@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
-    <http auto-config="true">
+    <!--<http auto-config="true">
         <intercept-url pattern="/" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
         <intercept-url pattern="/welcome" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
         <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
@@ -16,15 +16,43 @@
                     username-parameter="login" password-parameter="password"/>
 
         <logout logout-success-url="/login?logout"/>
+    </http>-->
+
+    <http auto-config="true">
+        <intercept-url pattern="/" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+        <intercept-url pattern="/welcome" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/>
+        <intercept-url pattern="/admin" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/login" access="isAnonymous()"/>
+
+        <form-login login-page="/login" authentication-success-handler-ref="simpleUrlAuthenticationSuccessHandlerByRole"
+                    authentication-failure-url="/login?error"
+                    username-parameter="login" password-parameter="password"/>
+
+        <logout logout-success-url="/login?logout"/>
     </http>
 
+    <!--<http use-expressions="true">
+        <intercept-url pattern="/" access="permitAll()" />
+        <intercept-url pattern="/**" access="isAuthenticated()" />
+
+        <form-login login-page="/login"
+                    authentication-failure-url="/login?error"
+                    authentication-success-handler-ref="simpleUrlAuthenticationSuccessHandlerByRole"
+                    username-parameter="login" password-parameter="password" />
+
+        <logout logout-success-url="/login?logout"/>
+    </http>-->
+
     <authentication-manager alias="authenticationManager">
-        <authentication-provider user-service-ref="userDetailsServiceImpl">
+        <authentication-provider user-service-ref="userDetailsService">
             <password-encoder ref="encoder"></password-encoder>
         </authentication-provider>
     </authentication-manager>
 
-    <beans:bean id="userDetailsServiceImpl"
+    <beans:bean id="simpleUrlAuthenticationSuccessHandlerByRole"
+                class="finalProject.security.SimpleUrlAuthenticationSuccessHandlerByRole"></beans:bean>
+
+    <beans:bean id="userDetailsService"
                 class="finalProject.service.UserDetailsServiceImpl"></beans:bean>
 
     <beans:bean id="encoder"

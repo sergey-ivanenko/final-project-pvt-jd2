@@ -62,6 +62,21 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
+	public void deleteById(Integer id) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		entityManager.getTransaction().begin();
+		String hql = "FROM User user WHERE user.userId = :id";
+		Query query = entityManager.createQuery(hql);
+		query.setParameter("id", id);
+		if (!query.getResultList().isEmpty()) {
+			User entity = (User) query.getResultList().get(0);
+			entityManager.remove(entity);
+			entityManager.getTransaction().commit();
+		}
+		entityManager.close();
+	}
+
+	@Override
 	public List<User> getAll() {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();

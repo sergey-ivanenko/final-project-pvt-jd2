@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RequestRepository extends JpaRepository<Request, Integer> {
 	List<Request> findByRequester(Client client);
+	void deleteById(int id);
 }

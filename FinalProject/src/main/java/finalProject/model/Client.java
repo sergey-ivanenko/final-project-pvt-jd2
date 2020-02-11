@@ -1,6 +1,8 @@
 package finalProject.model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,8 +16,8 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(name = "user_id")
 public class Client extends User {
     
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "requester")
-    private Set<Request> requests = new HashSet<>(0);
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "requester")
+    private List<Request> requests = new ArrayList<>(0);
 
     public Client() {
     }
@@ -24,11 +26,11 @@ public class Client extends User {
         super(name, login, password);
     }
 
-    public Set<Request> getRequests() {
+    public List<Request> getRequests() {
         return requests;
     }
 
-    public void setRequests(Set<Request> requests) {
+    public void setRequests(List<Request> requests) {
         this.requests = requests;
     }
 

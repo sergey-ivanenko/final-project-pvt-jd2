@@ -2,6 +2,7 @@ package finalProject.service;
 
 import finalProject.dao.RoleDao;
 import finalProject.dao.UserDao;
+import finalProject.model.Client;
 import finalProject.model.Role;
 import finalProject.model.User;
 
@@ -36,7 +37,11 @@ public class UserServiceImpl implements UserService {
 	public void add(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		Set<Role> roles = new HashSet<>();
-		roles.add(roleDao.getOne(1));
+		if (user instanceof Client) {
+			roles.add(roleDao.getOne(1));
+		} else {
+			roles.add(roleDao.getOne(2));
+		}
 		user.setRoles(roles);
 		dao.add(user);
 	}
@@ -55,6 +60,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void delete(User user) {
 		dao.delete(user);
+	}
+
+	@Override
+	public void deleteById(Integer id) {
+		dao.deleteById(id);
 	}
 
 	@Override

@@ -26,26 +26,30 @@ public class Request implements Serializable {
     @Column(name = "job", nullable = false, length = 40)
     private String job;
 
+    @Column(name = "description", columnDefinition = "text")
+    private String description;
+
     @Column(name = "payment")
-    private int payment;
+    private Integer payment;
 
     @Column(name = "hours_in_week")
-    private int hoursInWeek;
+    private Integer hoursInWeek;
 
-    @Column(name = "type")
+    @Column(name = "type", nullable = false)
     @Enumerated(EnumType.STRING)
     private Type type;
 
-    @ManyToOne/*(cascade = CascadeType.ALL, fetch = FetchType.LAZY)*/
+    @ManyToOne(/*cascade = CascadeType.ALL,*/ /*fetch = FetchType.LAZY*/)
     @JoinColumn(name = "user_id", nullable = false)
     private Client requester;
 
     public Request() {
     }
 
-    public Request(Client requester, String job, int payment, int hoursInWeek, Type type) {
+    public Request(Client requester, String job, String description, int payment, int hoursInWeek, Type type) {
         this.requester = requester;
         this.job = job;
+        this.description = description;
         this.payment = payment;
         this.hoursInWeek = hoursInWeek;
         this.type = type;
@@ -53,10 +57,6 @@ public class Request implements Serializable {
 
     public int getRequestId() {
         return requestId;
-    }
-
-    public void setRequestId(int requestId) {
-        this.requestId = requestId;
     }
 
     public Client getRequester() {
@@ -67,11 +67,15 @@ public class Request implements Serializable {
         return job;
     }
 
-    public int getPayment() {
+    public String getDescription() {
+        return description;
+    }
+
+    public Integer getPayment() {
         return payment;
     }
 
-    public int getHoursInWeek() {
+    public Integer getHoursInWeek() {
         return hoursInWeek;
     }
 
@@ -79,15 +83,23 @@ public class Request implements Serializable {
         return type;
     }
 
+    public void setRequestId(int requestId) {
+        this.requestId = requestId;
+    }
+
     public void setJob(String job) {
         this.job = job;
     }
 
-    public void setPayment(int payment) {
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPayment(Integer payment) {
         this.payment = payment;
     }
 
-    public void setHoursInWeek(int hoursInWeek) {
+    public void setHoursInWeek(Integer hoursInWeek) {
         this.hoursInWeek = hoursInWeek;
     }
 

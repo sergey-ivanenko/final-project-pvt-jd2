@@ -9,6 +9,7 @@ public interface RequestService {
 	Request findRequest(int id);
 	void update(Request request);
 	void delete(Request request);
+	void deleteById(int id);
 	List<Request> getAll();
 	List<Request> findByRequester(Client client);
 }
